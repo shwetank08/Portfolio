@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+
+import Footer from "./Page Layout/Footer";
+import Header from "./Page Layout/Header";
+import Contact from "./Pages/Contact";
+import Home from "./Pages/Home";
+import PageNotFound from "./Pages/PageNotFound";
+import Projects from "./Pages/Projects";
+import Skill from "./Pages/Skill";
+
+import "./App.css"
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+    <ToastContainer/>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/skill" component={Skill} />
+          <Route exact path="/project" component={Projects} />
+          <Route exact path="/contact" component={Contact} />
+          <Route exact path="*" component={PageNotFound}/>
+        </Switch>
+        <Footer />
+    </Router>
   );
-}
+};
 
 export default App;
